@@ -1,0 +1,4 @@
+# Ignore unnecessary files (e.g., data dumps)
+/Data/raw/
+__pycache__/
+.ipynb_checkpoints/
