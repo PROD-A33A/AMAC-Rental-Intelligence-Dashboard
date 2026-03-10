@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import numpy as np
+import os
 
 # ==========================================
 # 1. PAGE CONFIGURATION & UI SETUP
@@ -44,6 +45,7 @@ def load_and_clean_data():
         'Source': np.random.choice(['Nigeria Property Centre', 'Property Pro NG'], 2435),
         'District Tier': np.random.choice(tiers, 2435)
     }
+    
     df = pd.DataFrame(data)
 
     # --- Preprocessing Steps ---
