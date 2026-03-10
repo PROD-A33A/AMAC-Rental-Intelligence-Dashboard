@@ -45,8 +45,10 @@ def load_and_clean_data():
         'Source': np.random.choice(['Nigeria Property Centre', 'Property Pro NG'], 2435),
         'District Tier': np.random.choice(tiers, 2435)
     }
+
     
-    df = pd.DataFrame(data)
+    file_path = "Data/cleaned/amac_rental_master_v2.csv"
+    df = pd.DataFrame(file_path)
 
     # --- Preprocessing Steps ---
     # 1. Handle Missing Values
