@@ -8,11 +8,13 @@ import os
 # 1. PAGE CONFIGURATION & UI SETUP
 # ==========================================
 st.set_page_config(
-    page_title="AMAC Rental Intelligence",
-    page_icon="🏙️",
+    page_title="AMAC Dashboard",
+    page_icon="📈",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
 )
+    
+
 
 # Custom CSS for SaaS-like minimal styling
 st.markdown("""
@@ -26,46 +28,12 @@ st.markdown("""
 # ==========================================
 # 2. DATA LOADING & PREPROCESSING
 # ==========================================
-@st.cache_data
-def load_and_clean_data():
-    # Load the refined dataset (Update path as necessary)
-    # df = pd.read_csv('amac_rental_master.csv')
-    
-    # Mocking data structure based on the project schema for standalone testing
-    np.random.seed(42)
-    districts = ['Wuse', 'Maitama', 'Asokoro', 'Gwarinpa', 'Guzape', 'Jahi', 'Katampe', 'Lugbe', 'Life Camp', 'Jabi']
-    categories = ['Flat', 'Duplex', 'Terrace', 'Bungalow', 'Penthouse']
-    tiers = ['Luxury', 'Mid-range', 'Affordable']
-    
-    data = {
-        'Bedrooms': np.random.choice([1.0, 2.0, 3.0, 4.0, 5.0], 2435),
-        'Property Category': np.random.choice(categories, 2435),
-        'Price(Float)': np.random.lognormal(mean=14.5, sigma=0.8, size=2435), # Simulating NGN pricing
-        'District': np.random.choice(districts, 2435),
-        'Source': np.random.choice(['Nigeria Property Centre', 'Property Pro NG'], 2435),
-        'District Tier': np.random.choice(tiers, 2435)
-    }
+file = "../Data/cleaned/amac_rental_master_v2.csv"
+df = pd.read_csv(file)
+df = df.dropna(subset=['Bedrooms', 'District', 'Property Category', 'District Tier', 'Price(Float)'])
 
-    
-    file_path = "Data/cleaned/amac_rental_master_v2.csv"
-    df = pd.DataFrame(file_path)
-
-    # --- Preprocessing Steps ---
-    # 1. Handle Missing Values
-    df = df.dropna(subset=['Price(Float)', 'Bedrooms', 'District'])
-    
-    # 2. Ensure Correct Data Types
-    df['Price(Float)'] = pd.to_numeric(df['Price(Float)'], errors='coerce')
-    df['Bedrooms'] = df['Bedrooms'].astype(float)
-    
-    # 3. Outlier Removal (Trimming top 2% and bottom 2% of extreme market noise)
-    lower_bound = df['Price(Float)'].quantile(0.02)
-    upper_bound = df['Price(Float)'].quantile(0.98)
-    df = df[(df['Price(Float)'] >= lower_bound) & (df['Price(Float)'] <= upper_bound)]
-    
-    return df
-
-df = load_and_clean_data()
+#df['Bedrooms'] = pd.to_numeric(df['Bedrooms'], errors='coerce')
+df = df.dropna(subset=['Bedrooms']) 
 
 # ==========================================
 # 3. SIDEBAR: INTERACTIVE FILTERS
