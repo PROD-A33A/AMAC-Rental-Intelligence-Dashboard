@@ -4,5 +4,5 @@ plotly
 requests
 beautifulsoup4
 urllib3
-streamlit
-altair>=5.0.0
+altair
+streamlit>=1.40.0
