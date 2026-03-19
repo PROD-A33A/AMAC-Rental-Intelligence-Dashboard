@@ -3,6 +3,8 @@ import pandas as pd
 import plotly.express as px
 import numpy as np
 import os
+from pathlib import Path
+
 
 # ==========================================
 # 1. PAGE CONFIGURATION & UI SETUP
@@ -17,19 +19,47 @@ st.set_page_config(
 
 
 # Custom CSS for SaaS-like minimal styling
+#st.markdown("""
+ #   <style>
+  #  .block-container { padding-top: 2rem; padding-bottom: 2rem; }
+   # h1 { color: #1E3A8A; font-weight: 700; }
+    #.stMetric { background-color: #F8FAFC; padding: 15px; border-radius: 8px; border: 1px solid #E2E8F0; }
+    #</style>
+#""", unsafe_allow_html=True)
+# Custom CSS for SaaS-like minimal styling
 st.markdown("""
     <style>
     .block-container { padding-top: 2rem; padding-bottom: 2rem; }
-    h1 { color: #1E3A8A; font-weight: 700; }
-    .stMetric { background-color: #F8FAFC; padding: 15px; border-radius: 8px; border: 1px solid #E2E8F0; }
+    
+    /* IMPROVEMENT 1: Removed the hardcoded '#1E3A8A' color. 
+       Allowing Streamlit to use its native text colors ensures the title is 
+       dark blue/black in light mode and white/light-grey in dark mode. */
+    h1 { font-weight: 700; }
+    
+    /* IMPROVEMENT 2: Replaced the hardcoded '#F8FAFC' background with 
+       'var(--secondary-background-color)'. This native variable automatically 
+       switches between a light grey in Light Mode and a dark grey in Dark Mode. 
+       Also changed the border to a semi-transparent grey so it works in both themes. */
+    .stMetric { 
+        background-color: var(--secondary-background-color); 
+        padding: 15px; 
+        border-radius: 8px; 
+        border: 1px solid rgba(128, 128, 128, 0.2); 
+    }
     </style>
 """, unsafe_allow_html=True)
 
 # ==========================================
 # 2. DATA LOADING & PREPROCESSING
 # ==========================================
-file = "../Data/cleaned/amac_rental_master_v2.csv"
-df = pd.read_csv(file)
+  
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_PATH = BASE_DIR / "Data" / "cleaned" / "amac_rental_master_v2.csv"
+df = pd.read_csv(DATA_PATH)
+
+#file = "../Data/cleaned/amac_rental_master_v2.csv"
+#df = pd.read_csv(file)
 df = df.dropna(subset=['Bedrooms', 'District', 'Property Category', 'District Tier', 'Price(Float)'])
 
 #df['Bedrooms'] = pd.to_numeric(df['Bedrooms'], errors='coerce')
