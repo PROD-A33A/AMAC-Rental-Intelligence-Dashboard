@@ -126,8 +126,8 @@ st.title("AMAC Rental Intelligence Dashboard")
 st.markdown("A comprehensive analysis of the Abuja Municipal Area Council rental market.")
 st.markdown("---")
 st.markdown("Abuja rental prices can be all over the place." 
-            "This dashboard pulls real listing data and breaks it down visually"
-            "so you can see what different areas actually cost,"
+            "This dashboard pulls rental listings and breaks it down visually"
+            " so you can see what different areas actually cost,"
             "compare property types, and know if a price is fair before you commit.")
 st.markdown("---")
 
