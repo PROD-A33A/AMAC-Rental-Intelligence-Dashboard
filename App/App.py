@@ -152,8 +152,8 @@ with kpi3:
     top_district = filtered_df.groupby('District')['Price(Float)'].median().idxmax()
     #st.metric(label="Most Expensive District", value=top_district)
     st.metric(
-    label="District with Highest Typical Rent", 
-    value="top_district",
+    label="Most Expensive District", 
+    value=top_district,
     help="We use the 'Median' (the middle price) instead of the 'Average.' "
          "This is more accurate because it isn't skewed by a few ultra-expensive "
          "mansions in places like Maitama. It represents what a typical renter should expect."
