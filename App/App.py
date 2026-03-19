@@ -125,7 +125,11 @@ filtered_df = df[
 st.title("AMAC Rental Intelligence Dashboard")
 st.markdown("A comprehensive analysis of the Abuja Municipal Area Council rental market.")
 st.markdown("---")
-st.markdown("Abuja rental prices can be all over the place. This dashboard pulls real listing data and breaks it down visually so you can see what different areas actually cost, compare property types, and know if a price is fair before you commit.")
+st.markdown("Abuja rental prices can be all over the place." 
+            "This dashboard pulls real listing data and breaks it down visually"
+            "so you can see what different areas actually cost,"
+            "compare property types, and know if a price is fair before you commit.")
+st.markdown("---")
 
 # Handle empty state if filters are too aggressive
 if filtered_df.empty:
@@ -146,7 +150,14 @@ with kpi2:
 with kpi3:
     # Most expensive district based on median price
     top_district = filtered_df.groupby('District')['Price(Float)'].median().idxmax()
-    st.metric(label="Most Expensive District", value=top_district)
+    #st.metric(label="Most Expensive District", value=top_district)
+    st.metric(
+    label="District with Highest Typical Rent", 
+    value="top_district",
+    help="We use the 'Median' (the middle price) instead of the 'Average.' "
+         "This is more accurate because it isn't skewed by a few ultra-expensive "
+         "mansions in places like Maitama. It represents what a typical renter should expect."
+    )
 
 with kpi4:
     st.metric(label="Total Listings Analyzed", value=f"{len(filtered_df):,}")
