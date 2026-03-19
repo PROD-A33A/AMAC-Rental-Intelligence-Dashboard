@@ -5,3 +5,4 @@ requests
 beautifulsoup4
 urllib3
 streamlit
+altair>=5.0.0
