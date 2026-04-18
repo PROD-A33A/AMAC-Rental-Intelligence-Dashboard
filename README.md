@@ -6,9 +6,9 @@
 
 ## Overview
 
-This project provides a comprehensive, data-driven view of the Abuja rental market. It scrapes live listings from two major Nigerian property portals, cleans and consolidates the data through a structured pipeline, and surfaces actionable market intelligence through an interactive web dashboard.
+This project provides a comprehensive, data-driven view of the Abuja rental market. It scrapes listings from two major Nigerian property portals, cleans and consolidates the data through a structured pipeline, and surfaces actionable market intelligence through an interactive web dashboard.
 
-The dashboard allows users to explore rental price distributions, compare districts by tier (Budget, Mid-Range, Luxury), and analyse market composition by property category — all with dynamic, real-time filters.
+The dashboard allows users to explore rental price distributions, compare districts by tier (Budget, Mid-Range, Luxury), and analyse market composition by property category — all with dynamic filters.
 
 ---
 
@@ -138,7 +138,7 @@ streamlit run App.py
 
 
 
-> **Note:** Raw data files are excluded from this repository (see `.gitignore`). The `Data/cleaned/` directory contains the processed master dataset required by the dashboard.
+> **Note:** Skip execution of 01_ppro_scrapper.ipynb and scraper.ipynb. Raw data files are excluded from this repository (see `.gitignore`). The `Data/cleaned/` directory contains the processed master dataset required by the dashboard.
 
 ---
 
